@@ -567,17 +567,19 @@
 <p>The only constant field you will receive is <code>type</code> - the event's name. Except when connecting, <code>type</code> <em>will not</em> be <code>null</code>; it will simply not be included.</p>
 <p>The rest of the event's data is included top-level with the event payload (e.g. no <code>data</code> field which contains it all). For reference purposes, your typical Gateway payload will look something like this:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;EventName&quot;</span><span class="p">,</span>  <span class="err">//</span> <span class="err">your</span> <span class="err">savi</span><span class="kc">n</span><span class="err">g</span> <span class="err">grace</span> <span class="err">o</span><span class="kc">f</span> <span class="err">co</span><span class="kc">ns</span><span class="err">is</span><span class="kc">ten</span><span class="err">cy</span> <span class="err">i</span><span class="kc">n</span> <span class="err">Guilded</span> <span class="err">payloads</span>
-    <span class="nt">&quot;somethingId&quot;</span><span class="p">:</span> <span class="s2">&quot;ffd717d5-73f1-11eb-8d50-6245b4f631c5&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;listOfThings&quot;</span><span class="p">:</span> <span class="p">[],</span>
-    <span class="nt">&quot;needlesslyComplicatedObject&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="nt">&quot;messageContent&quot;</span><span class="p">:</span> <span class="s2">&quot;I feel bad for the devs who had to make the client.&quot;</span>
-        <span class="p">}</span>
-    <span class="p">},</span>
-    <span class="nt">&quot;happenedAt&quot;</span><span class="p">:</span> <span class="s2">&quot;ISO8601.T.ime:sta:mp&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;imageLink&quot;</span><span class="p">:</span> <span class="s2">&quot;https://the-entire-url.to-the-file-on.aws/because_lol-Large.webp&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;madeBy&quot;</span><span class="p">:</span> <span class="s2">&quot;5A2B60&quot;</span>
+  <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;EventName&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;somethingId&quot;</span><span class="p">:</span> <span class="s2">&quot;ffd717d5-73f1-11eb-8d50-6245b4f631c5&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;listOfThings&quot;</span><span class="p">:</span> <span class="p">[],</span>
+  <span class="nt">&quot;stackedContentObject&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;nodes&quot;</span><span class="p">:</span> <span class="p">[{</span>
+      <span class="nt">&quot;leaves&quot;</span><span class="p">:</span> <span class="p">[{</span>
+        <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;hey go write something funny for the docs&quot;</span>
+      <span class="p">}]</span>
+    <span class="p">}]</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;happenedAt&quot;</span><span class="p">:</span> <span class="s2">&quot;ISO8601.T.ime:sta:mpZ&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;imageLink&quot;</span><span class="p">:</span> <span class="s2">&quot;https://the-entire-url.to-the-file-on.aws/because_lol-Large.webp&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;madeBy&quot;</span><span class="p">:</span> <span class="s2">&quot;5A2B60&quot;</span>
 <span class="p">}</span>
 </code></pre></div>
 <h2 id="connecting-to-the-gateway">Connecting to the Gateway<a class="headerlink" href="#connecting-to-the-gateway" title="Permanent link">🔗</a></h2>
@@ -619,7 +621,7 @@
 </tr>
 </tbody>
 </table>
-<p>* This is for team-specific events like member and channel updates. I have yet to get this to work personally, but it supposedly does.</p>
+<p>* This is for team-specific events like member and channel updates. I have yet to get this to work personally, but it's what the client does.</p>
 <h6>Gateway Headers</h6>
 <table>
 <thead>

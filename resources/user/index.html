@@ -388,6 +388,34 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#me-object" class="md-nav__link">
+    Me Object
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#friend-object" class="md-nav__link">
+    Friend Object
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#emoji-use-object" class="md-nav__link">
+    Emoji Use Object
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update-message-object" class="md-nav__link">
+    Update Message Object
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#get-current-user" class="md-nav__link">
     Get Current User
   </a>
@@ -648,7 +676,7 @@
 </tr>
 <tr>
 <td>userTransientStatus</td>
-<td><a href="/resources/user#transient-status">transient status object</a></td>
+<td><a href="#transient-status">transient status object</a></td>
 <td>this user's transient status (game, streaming, ?)</td>
 </tr>
 <tr>
@@ -780,7 +808,7 @@
 </tr>
 <tr>
 <td>guildedClientId</td>
-<td>uuid</td>
+<td><a href="/reference#snowflakes-uuids">uuid</a></td>
 <td></td>
 </tr>
 </tbody>
@@ -922,9 +950,187 @@
 <p><img alt="example user status in the client" src="/images/example_status.png" /></p>
 <h3 id="user-status-content-object">User Status Content Object<a class="headerlink" href="#user-status-content-object" title="Permanent link">🔗</a></h3>
 <p>Status content is an example of "stacked" content, much like message data. It's pretty difficult to portray its structure in a table, so I've simply not done that. The useful part of the object is the <code>document.nodes[0].nodes</code> list. Refer to <a href="#example-user-status">this example</a> and parse it as you will.</p>
+<h3 id="me-object">Me Object<a class="headerlink" href="#me-object" title="Permanent link">🔗</a></h3>
+<h6>Me Structure</h6>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>teams</td>
+<td>array of <a href="/resources/team#team-object">teams</a></td>
+<td>a list of this user's teams</td>
+</tr>
+<tr>
+<td>user</td>
+<td><a href="#user-object">user</a></td>
+<td>this user</td>
+</tr>
+<tr>
+<td>updateMessage</td>
+<td>?<a href="#update-message-object">update message</a></td>
+<td>guilded's update message</td>
+</tr>
+<tr>
+<td>customReactions</td>
+<td>array of <a href="/resources/emoji#custom-emoji-object">emojis</a></td>
+<td>a list of emojis this user has access to</td>
+</tr>
+<tr>
+<td>reactionUsages</td>
+<td>array of <a href="#emoji-use-object">emoji uses</a></td>
+<td>a list of how many times a specific emoji has been used by the this user</td>
+</tr>
+<tr>
+<td>friends</td>
+<td>array of <a href="#friend-object">friends</a></td>
+<td>a list of friends, friend requests and friend requests sent by this user</td>
+</tr>
+</tbody>
+</table>
+<h3 id="friend-object">Friend Object<a class="headerlink" href="#friend-object" title="Permanent link">🔗</a></h3>
+<h6>Friend Structure</h6>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>friendUserId</td>
+<td><a href="/reference/user#user-object">user id</a></td>
+<td>id of the user</td>
+</tr>
+<tr>
+<td>friendStatus</td>
+<td>string</td>
+<td>the current <a href="#friend-status">status of friendship</a></td>
+</tr>
+<tr>
+<td>createdAt</td>
+<td>ISO8601 timestamp</td>
+<td>when the request was sent/when request got accepted</td>
+</tr>
+</tbody>
+</table>
+<h6>Example Friend</h6>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;friendUserId&quot;</span><span class="p">:</span> <span class="s2">&quot;R40Mp0Wd&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;friendStatus&quot;</span><span class="p">:</span> <span class="s2">&quot;accepted&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;createdAt&quot;</span><span class="p">:</span> <span class="s2">&quot;2021-01-01T15:00:00.000Z&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h6>Friend Status</h6>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>accepted</td>
+<td>the friend request was accepted</td>
+</tr>
+<tr>
+<td>requested</td>
+<td>this user has sent a friend request</td>
+</tr>
+<tr>
+<td>pending</td>
+<td>a friend request was sent to this user</td>
+</tr>
+</tbody>
+</table>
+<h3 id="emoji-use-object">Emoji Use Object<a class="headerlink" href="#emoji-use-object" title="Permanent link">🔗</a></h3>
+<h6>Emoji Use Structure</h6>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>integer</td>
+<td>ID of the emoji</td>
+</tr>
+<tr>
+<td>total</td>
+<td>integer</td>
+<td>how many times the emoji has been used</td>
+</tr>
+</tbody>
+</table>
+<h6>Example Emoji Use</h6>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">90025666</span><span class="p">,</span>
+    <span class="nt">&quot;total&quot;</span><span class="p">:</span> <span class="mi">984</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="update-message-object">Update Message Object<a class="headerlink" href="#update-message-object" title="Permanent link">🔗</a></h3>
+<h6>Update Message Structure</h6>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>unsigned integer</td>
+<td>ID of the update message</td>
+</tr>
+<tr>
+<td>content</td>
+<td>message content</td>
+<td>the content of the update message</td>
+</tr>
+<tr>
+<td>createdAt</td>
+<td>ISO8601 timestamp</td>
+<td>when the post was created</td>
+</tr>
+<tr>
+<td>updatedAt</td>
+<td>ISO8601 timestamp</td>
+<td>when the post was edited</td>
+</tr>
+<tr>
+<td>publishedAt</td>
+<td>ISO8601 timestamp</td>
+<td>when the post was published to everyone</td>
+</tr>
+<tr>
+<td>ctaButtonText</td>
+<td>string</td>
+<td>the text of the footer button</td>
+</tr>
+<tr>
+<td>ctaButtonLink</td>
+<td>url</td>
+<td>the link of the footer button</td>
+</tr>
+</tbody>
+</table>
 <h2 id="get-current-user">Get Current User<a class="headerlink" href="#get-current-user" title="Permanent link">🔗</a></h2>
 <p><span class="http-verb">GET</span><span class="http-path">/me</span></p>
-<p>Returns the <a href="#user-object">user</a> object of the requester's account.</p>
+<p>Returns the <a href="#me-object">me</a> object of the requester's account.</p>
 <h6>Query Params</h6>
 <table>
 <thead>
