@@ -487,43 +487,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#get-team-roles" class="md-nav__link">
-    Get Team Roles
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#create-team-role" class="md-nav__link">
-    Create Team Role
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#modify-guild-role-positions" class="md-nav__link">
-    Modify Guild Role Positions
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#modify-guild-role" class="md-nav__link">
-    Modify Guild Role
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#delete-guild-role" class="md-nav__link">
-    Delete Guild Role
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#get-guild-invites" class="md-nav__link">
-    Get Guild Invites
+  <a href="#get-team-invites" class="md-nav__link">
+    Get Team Invites
   </a>
   
 </li>
@@ -1462,7 +1427,7 @@
 <p>Returns a <a href="#team-member-object">team member</a> object for the specified user.</p>
 <h2 id="list-team-members">List Team Members<a class="headerlink" href="#list-team-members" title="Permanent link">🔗</a></h2>
 <p><span class="http-verb">GET</span><span class="http-path">/teams/{<a href="#team-object">team.id</a>}/members</span></p>
-<p>Returns a list of <a href="#team-member-object">team member</a> objects that are members of the guild.</p>
+<p>Returns a list of partial <a href="#team-member-object">team members</a>, flow bots, and <a href="/topics/webhook#webhook-object">webhooks</a> under <code>members</code>, <code>bots</code>, and <code>webhooks</code> keys respectively. A partial team member object includes, at minimum, <code>id</code> and <code>name</code>, but may also include one or multiple of <code>profilePicture</code>, <code>roleIds</code>, <code>userPresenceStatus</code>, and <code>nickname</code>.</p>
 <h2 id="change-team-member-nickname">Change Team Member Nickname<a class="headerlink" href="#change-team-member-nickname" title="Permanent link">🔗</a></h2>
 <p><span class="http-verb">PUT</span><span class="http-path">/teams/{<a href="#team-object">team.id</a>}/members/{<a href="/resources/user#user-object">user.id</a>}/nickname</span></p>
 <p>Change a team member's nickname.</p>
@@ -1554,7 +1519,7 @@
 </table>
 <h2 id="remove-team-ban">Remove Team Ban<a class="headerlink" href="#remove-team-ban" title="Permanent link">🔗</a></h2>
 <p><span class="http-verb">PUT</span><span class="http-path">/teams/{<a href="#team-object">team.id</a>}/members/{<a href="/users#user-object">user.id</a>}/ban</span></p>
-<p>Remove the ban for a user. Requires the <code>BAN_MEMBERS</code> permissions. Returns an empty dictionary on success.</p>
+<p>Remove the ban for a user. Returns an empty dictionary on success.</p>
 <h6>JSON Params</h6>
 <table>
 <thead>
@@ -1582,7 +1547,7 @@
 <thead>
 <tr>
 <th>Value</th>
-<th>Description</th>
+<th>Meaning</th>
 </tr>
 </thead>
 <tbody>
@@ -1600,134 +1565,45 @@
 </tr>
 </tbody>
 </table>
-<h2 id="get-team-roles">Get Team Roles<a class="headerlink" href="#get-team-roles" title="Permanent link">🔗</a></h2>
-<p><span class="http-verb">GET</span><span class="http-path">/teams/{<a href="#team-object">team.id</a>}/roles</span></p>
-<p>Returns a list of <a href="#DOCS_TOPICS_PERMISSIONS/role-object">role</a> objects for the guild.</p>
-<h2 id="create-team-role">Create Team Role<a class="headerlink" href="#create-team-role" title="Permanent link">🔗</a></h2>
-<p><span class="http-verb">POST</span><span class="http-path">/teams/{<a href="#team-object">team.id</a>}/roles</span></p>
-<p>Create a new <a href="#DOCS_TOPICS_PERMISSIONS/role-object">role</a> for the guild. Requires the <code>MANAGE_ROLES</code> permission. Returns the new <a href="#DOCS_TOPICS_PERMISSIONS/role-object">role</a> object on success. Fires a <a href="/topics/gateway#guild-role-create">Guild Role Create</a> Gateway event. All JSON params are optional.</p>
-<h6>JSON Params</h6>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Description</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>name</td>
-<td>string</td>
-<td>name of the role</td>
-<td>"new role"</td>
-</tr>
-<tr>
-<td>permissions</td>
-<td>string</td>
-<td>bitwise value of the enabled/disabled permissions</td>
-<td>@everyone permissions in guild</td>
-</tr>
-<tr>
-<td>color</td>
-<td>integer</td>
-<td>RGB color value</td>
-<td>0</td>
-</tr>
-<tr>
-<td>hoist</td>
-<td>boolean</td>
-<td>whether the role should be displayed separately in the sidebar</td>
-<td>false</td>
-</tr>
-<tr>
-<td>mentionable</td>
-<td>boolean</td>
-<td>whether the role should be mentionable</td>
-<td>false</td>
-</tr>
-</tbody>
-</table>
-<h2 id="modify-guild-role-positions">Modify Guild Role Positions<a class="headerlink" href="#modify-guild-role-positions" title="Permanent link">🔗</a></h2>
-<p><span class="http-verb">PATCH</span><span class="http-path">/teams/{<a href="#team-object">team.id</a>}/roles</span></p>
-<p>Modify the positions of a set of <a href="#DOCS_TOPICS_PERMISSIONS/role-object">role</a> objects for the guild. Requires the <code>MANAGE_ROLES</code> permission. Returns a list of all of the guild's <a href="#DOCS_TOPICS_PERMISSIONS/role-object">role</a> objects on success. Fires multiple <a href="/topics/gateway#guild-role-update">Guild Role Update</a> Gateway events.</p>
-<p>This endpoint takes a JSON array of parameters in the following format:</p>
-<h6>JSON Params</h6>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>id</td>
-<td>snowflake</td>
-<td>role</td>
-</tr>
-<tr>
-<td>?position</td>
-<td>?integer</td>
-<td>sorting position of the role</td>
-</tr>
-</tbody>
-</table>
-<h2 id="modify-guild-role">Modify Guild Role<a class="headerlink" href="#modify-guild-role" title="Permanent link">🔗</a></h2>
-<p><span class="http-verb">PATCH</span><span class="http-path">/teams/{<a href="#team-object">team.id</a>}/roles/{role.id#DOCS_TOPICS_PERMISSIONS/role-object}</span></p>
-<p>Modify a guild role. Requires the <code>MANAGE_ROLES</code> permission. Returns the updated <a href="#DOCS_TOPICS_PERMISSIONS/role-object">role</a> on success. Fires a <a href="/topics/gateway#guild-role-update">Guild Role Update</a> Gateway event.</p>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>All parameters to this endpoint are optional and nullable.</p>
-</div>
-<h6>JSON Params</h6>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>name</td>
-<td>string</td>
-<td>name of the role</td>
-</tr>
-<tr>
-<td>permissions</td>
-<td>string</td>
-<td>bitwise value of the enabled/disabled permissions</td>
-</tr>
-<tr>
-<td>color</td>
-<td>integer</td>
-<td>RGB color value</td>
-</tr>
-<tr>
-<td>hoist</td>
-<td>boolean</td>
-<td>whether the role should be displayed separately in the sidebar</td>
-</tr>
-<tr>
-<td>mentionable</td>
-<td>boolean</td>
-<td>whether the role should be mentionable</td>
-</tr>
-</tbody>
-</table>
-<h2 id="delete-guild-role">Delete Guild Role<a class="headerlink" href="#delete-guild-role" title="Permanent link">🔗</a></h2>
-<p><span class="http-verb">DELETE</span><span class="http-path">/teams/{<a href="#team-object">team.id</a>}/roles/{role.id#DOCS_TOPICS_PERMISSIONS/role-object}</span></p>
-<p>Delete a guild role. Requires the <code>MANAGE_ROLES</code> permission. Returns a 204 empty response on success. Fires a <a href="/topics/gateway#guild-role-delete">Guild Role Delete</a> Gateway event.</p>
-<h2 id="get-guild-invites">Get Guild Invites<a class="headerlink" href="#get-guild-invites" title="Permanent link">🔗</a></h2>
-<p><span class="http-verb">GET</span><span class="http-path">/teams/{<a href="#team-object">team.id</a>}/invites</span></p>
-<p>Returns a list of <a href="#DOCS_RESOURCES_INVITE/invite-object">invite</a> objects (with <a href="#DOCS_RESOURCES_INVITE/invite-metadata-object">invite metadata</a>) for the guild. Requires the <code>MANAGE_GUILD</code> permission.</p>
+<h2 id="get-team-invites">Get Team Invites<a class="headerlink" href="#get-team-invites" title="Permanent link">🔗</a></h2>
+<p><span class="http-verb">GET</span><span class="http-path">/teams/{<a href="#team-object">team.id</a>}/hash_invites</span></p>
+<p>Returns a list of invite objects inside of an <code>invites</code> key on success.</p>
+<h6>Example Response</h6>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+  <span class="nt">&quot;invites&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;XENGAmn2&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;createdAt&quot;</span><span class="p">:</span> <span class="s2">&quot;2021-02-26T22:43:52.380Z&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;teamId&quot;</span><span class="p">:</span> <span class="s2">&quot;4R5q39VR&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;invitedBy&quot;</span><span class="p">:</span> <span class="s2">&quot;EdVMVKR4&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;usedBy&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="nt">&quot;gameId&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="nt">&quot;useCount&quot;</span><span class="p">:</span> <span class="mi">0</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;4E6rm5AE&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;createdAt&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-08-16T20:47:12.733Z&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;teamId&quot;</span><span class="p">:</span> <span class="s2">&quot;4R5q39VR&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;invitedBy&quot;</span><span class="p">:</span> <span class="s2">&quot;w4WMRR1m&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;usedBy&quot;</span><span class="p">:</span> <span class="s2">&quot;8d8aEOgm&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;gameId&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="nt">&quot;useCount&quot;</span><span class="p">:</span> <span class="mi">1</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;Mkd7zGN2&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;createdAt&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-08-14T12:45:09.322Z&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;teamId&quot;</span><span class="p">:</span> <span class="s2">&quot;4R5q39VR&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;invitedBy&quot;</span><span class="p">:</span> <span class="s2">&quot;w4WMRR1m&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;usedBy&quot;</span><span class="p">:</span> <span class="s2">&quot;EdVMVnR4&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;gameId&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="nt">&quot;useCount&quot;</span><span class="p">:</span> <span class="mi">1</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
 <h2 id="create-team-invite">Create Team Invite<a class="headerlink" href="#create-team-invite" title="Permanent link">🔗</a></h2>
 <p><span class="http-verb">POST</span><span class="http-path">/teams/{<a href="#team-object">team.id</a>}/invites</span></p>
-<p>Returns <code>{"invite": {"id": invite_code}}</code>, where invite_code is the generated invite code (a string, does not include <code>https://guilded.gg/i/</code>), on success.</p>
+<p>Returns <code>{"invite": {"id": invite_code}}</code>, where invite_code is the generated invite code on success (a string, does not include <code>https://guilded.gg/i/</code>).</p>
 <h6>JSON Params</h6>
 <table>
 <thead>
