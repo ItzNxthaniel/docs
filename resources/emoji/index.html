@@ -335,6 +335,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#emoji-pack-object" class="md-nav__link">
+    Emoji Pack Object
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#get-team-emojis" class="md-nav__link">
     Get Team Emojis
   </a>
@@ -342,8 +349,29 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#get-custom-emoji-pack" class="md-nav__link">
+    Get Custom Emoji Pack
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#upload-custom-emoji-pack" class="md-nav__link">
+    Upload Custom Emoji Pack
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#create-team-emoji" class="md-nav__link">
     Create Team Emoji
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bulk-create-custom-emoji" class="md-nav__link">
+    Bulk Create Custom Emoji
   </a>
   
 </li>
@@ -611,6 +639,142 @@
   <span class="nt">&quot;discordSyncedAt&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-07-28T06:49:03.668Z&quot;</span>
 <span class="p">}</span>
 </code></pre></div>
+<h3 id="emoji-pack-object">Emoji Pack Object<a class="headerlink" href="#emoji-pack-object" title="Permanent link">🔗</a></h3>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Emoji packs can include a maximum of 30 emojis.</p>
+</div>
+<h6>Emoji Pack Structure</h6>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>name of the emoji pack</td>
+</tr>
+<tr>
+<td>author</td>
+<td>string</td>
+<td>author of the emoji pack</td>
+</tr>
+<tr>
+<td>emojis</td>
+<td>array of partial emojis</td>
+<td>list of emojis to import. each item should include a <code>name</code> (alphanumberic only) and a <code>url</code></td>
+</tr>
+</tbody>
+</table>
+<h6>Example Emoji Pack</h6>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+  <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Guilded emojis&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;author&quot;</span><span class="p">:</span> <span class="s2">&quot;emoji.gg&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;emotes&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;gil_wut&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://emoji.gg/assets/emoji/6017_gil_wut.png&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;gil_woah&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://emoji.gg/assets/emoji/9837_gil_woah.png&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;gil_thumb&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://emoji.gg/assets/emoji/8264_gil_thumb.png&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;gil_think&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://emoji.gg/assets/emoji/2294_gil_think.png&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;gil_sweat&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://emoji.gg/assets/emoji/5722_gil_sweat.png&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;gil_smug&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://emoji.gg/assets/emoji/7756_gil_smug.png&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;gil_shrug&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://emoji.gg/assets/emoji/3769_gil_shrug.png&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;gil_scared&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://emoji.gg/assets/emoji/2002_gil_scared.png&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;gil_salute&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://emoji.gg/assets/emoji/7259_gil_salute.png&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;gil_ree&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://emoji.gg/assets/emoji/6400_gil_ree.png&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;gil_stare&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://emoji.gg/assets/emoji/9969_gil_stare.png&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;gil_notlikethis&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://emoji.gg/assets/emoji/1616_gil_notlikethis.png&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;gil_lul&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://emoji.gg/assets/emoji/5606_gil_lul.png&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;gil_lol&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://emoji.gg/assets/emoji/7890_gil_lol.png&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;gil_wave&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://emoji.gg/assets/emoji/2469_gil_wave.png&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;gil_heh&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://emoji.gg/assets/emoji/6192_gil_heh.png&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;guilded&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://emoji.gg/assets/emoji/7391_guilded.png&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;gil_facepalm&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://emoji.gg/assets/emoji/7256_gil_facepalm.png&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;gil_eyes&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://emoji.gg/assets/emoji/6197_gil_eyes.png&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;gil_doge&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://emoji.gg/assets/emoji/1037_gil_doge.png&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;gil_deal_with_it&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://emoji.gg/assets/emoji/2315_gil_deal_with_it.png&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;gil_dab&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://emoji.gg/assets/emoji/5387_gil_dab.png&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;gil_cry&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://emoji.gg/assets/emoji/4846_gil_cry.png&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;cheer_gil&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://emoji.gg/assets/emoji/8188_cheer_gil.png&quot;</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
 <h2 id="get-team-emojis">Get Team Emojis<a class="headerlink" href="#get-team-emojis" title="Permanent link">🔗</a></h2>
 <p><span class="http-verb">GET</span><span class="http-path">/teams/{<a href="/resources/team#team-object">team.id</a>}/customReactions</span></p>
 <p>Returns a list of <a href="#custom-emoji-object">emoji</a> objects for the given team.</p>
@@ -651,14 +815,14 @@
 <td>createdBy</td>
 <td><a href="/resources/user#user-object">user id</a></td>
 <td>return emojis created by this user's id</td>
-<td></td>
+<td>false</td>
 <td></td>
 </tr>
 <tr>
 <td>searchTerm</td>
 <td>string</td>
 <td>search emoji names with a string</td>
-<td></td>
+<td>false</td>
 <td></td>
 </tr>
 <tr>
@@ -667,6 +831,55 @@
 <td>return emojis created before this emoji was created (potentially something to do with pagination)</td>
 <td>false</td>
 <td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="get-custom-emoji-pack">Get Custom Emoji Pack<a class="headerlink" href="#get-custom-emoji-pack" title="Permanent link">🔗</a></h2>
+<p><span class="http-verb">POST</span><span class="http-path">https://media.guilded.gg/media/fetch_emote_pack</span></p>
+<p>Get the contents of an emoji pack.</p>
+<h6>JSON Params</h6>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>url</td>
+<td>string</td>
+<td>the emoji pack to get (must link to a valid emoji pack JSON file)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="upload-custom-emoji-pack">Upload Custom Emoji Pack<a class="headerlink" href="#upload-custom-emoji-pack" title="Permanent link">🔗</a></h2>
+<p><span class="http-verb">POST</span><span class="http-path">https://media.guilded.gg/media/import_emote_pack</span></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>After doing this, call <a href="#bulk-create-custom-emoji">Bulk Create Custom Emoji</a> to actually import the emojis.</p>
+</div>
+<p>Upload the contents of an emoji pack to Guilded. Returns an array of <code>{url: url, name: name}</code> on success, where <code>url</code> is the URL to the uploaded image on Guilded's CDN, and <code>name</code> is the name of the emoji from the emoji pack.</p>
+<h6>JSON Params</h6>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>url</td>
+<td>string</td>
+<td>the emoji pack to import (must link to a valid emoji pack JSON file)</td>
+</tr>
+<tr>
+<td>uploadTrackingId?</td>
+<td>string</td>
+<td>unknown. looks like "r-0123456-7891234"</td>
 </tr>
 </tbody>
 </table>
@@ -706,6 +919,25 @@
 <td>apng?</td>
 <td>string</td>
 <td>url to the image you uploaded (<a href="/reference#upload-a-file">CustomReaction</a>)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="bulk-create-custom-emoji">Bulk Create Custom Emoji<a class="headerlink" href="#bulk-create-custom-emoji" title="Permanent link">🔗</a></h2>
+<p><span class="http-verb">POST</span><span class="http-path">/teams/{<a href="/resources/team#team-object">team.id</a>}/bulkCustomReactions</span></p>
+<p>Bulk-add custom emojis to the team. Returns an array of <a href="#custom-emoji-object">emoji</a> on success.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>urls</td>
+<td>array of partial emojis</td>
+<td>the list of emojis to add. each item should include a <code>name</code> (alphanumberic only) and a <code>url</code> (<a href="/reference#upload-a-file">CustomReaction</a>). if you are <a href="#upload-custom-emoji-pack">importing an emoji pack</a>, you may simply re-use that endpoint's response</td>
 </tr>
 </tbody>
 </table>

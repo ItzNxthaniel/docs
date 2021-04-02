@@ -364,13 +364,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#modify-channel" class="md-nav__link">
-    Modify Channel
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#deleteclose-channel" class="md-nav__link">
     Delete/Close Channel
   </a>
@@ -1831,87 +1824,9 @@
 <h2 id="get-channel">Get Channel<a class="headerlink" href="#get-channel" title="Permanent link">🔗</a></h2>
 <p><span class="http-verb">GET</span><span class="http-path">/channels/{<a href="/resources/channel#channel-object">channel.id</a>}</span></p>
 <p>Get a channel by ID. Returns a <a href="#channel-object">channel object</a>.</p>
-<h2 id="modify-channel">Modify Channel<a class="headerlink" href="#modify-channel" title="Permanent link">🔗</a></h2>
-<p><span class="http-verb">PATCH</span><span class="http-path">/channels/{<a href="/resources/channel#channel-object">channel.id</a>}</span></p>
-<p>Update a channel's settings. Requires the <code>MANAGE_CHANNELS</code> permission for the guild. Returns a <a href="/resources/channel#channel-object">channel</a> on success, and a 400 BAD REQUEST on invalid parameters. Fires a <a href="/topics/gateway#channel-update">Channel Update</a> Gateway event. If modifying a category, individual <a href="/topics/gateway#channel-update">Channel Update</a> events will fire for each child channel that also changes. If modifying permission overwrites, the <code>MANAGE_ROLES</code> permission is required. Only permissions your bot has in the guild or channel can be allowed/denied (unless your bot has a <code>MANAGE_ROLES</code> overwrite in the channel). All JSON parameters are optional.</p>
-<h6>JSON Params</h6>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Description</th>
-<th>Channel Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>name</td>
-<td>string</td>
-<td>2-100 character channel name</td>
-<td>All</td>
-</tr>
-<tr>
-<td>type</td>
-<td>integer</td>
-<td>the <a href="/resources/channel#channel-object-channel-types">type of channel</a>; only conversion between text and news is supported and only in guilds with the "NEWS" feature</td>
-<td>Text, News</td>
-</tr>
-<tr>
-<td>position</td>
-<td>?integer</td>
-<td>the position of the channel in the left-hand listing</td>
-<td>All</td>
-</tr>
-<tr>
-<td>topic</td>
-<td>?string</td>
-<td>0-1024 character channel topic</td>
-<td>Text, News</td>
-</tr>
-<tr>
-<td>nsfw</td>
-<td>?boolean</td>
-<td>whether the channel is nsfw</td>
-<td>Text, News, Store</td>
-</tr>
-<tr>
-<td>rate_limit_per_user</td>
-<td>?integer</td>
-<td>amount of seconds a user has to wait before sending another message (0-21600); bots, as well as users with the permission <code>manage_messages</code> or <code>manage_channel</code>, are unaffected</td>
-<td>Text</td>
-</tr>
-<tr>
-<td>bitrate</td>
-<td>?integer</td>
-<td>the bitrate (in bits) of the voice channel; 8000 to 96000 (128000 for VIP servers)</td>
-<td>Voice</td>
-</tr>
-<tr>
-<td>user_limit</td>
-<td>?integer</td>
-<td>the user limit of the voice channel; 0 refers to no limit, 1 to 99 refers to a user limit</td>
-<td>Voice</td>
-</tr>
-<tr>
-<td>parent_id</td>
-<td>?snowflake</td>
-<td>id of the new parent category for a channel</td>
-<td>Text, News, Store, Voice</td>
-</tr>
-</tbody>
-</table>
 <h2 id="deleteclose-channel">Delete/Close Channel<a class="headerlink" href="#deleteclose-channel" title="Permanent link">🔗</a></h2>
-<p><span class="http-verb">DELETE</span><span class="http-path">/channels/{<a href="/resources/channel#channel-object">channel.id</a>}</span></p>
-<p>Delete a channel. Requires the <code>MANAGE_CHANNELS</code> permission for the team. Deleting a category does not delete its child channels; they will have their <code>categoryId</code> removed and a <a href="/topics/gateway#channel-update">Channel Update</a> Gateway event will fire for each of them. Returns a <a href="/resources/channel#channel-object">channel</a> object on success. Fires a <a href="/topics/gateway#channel-delete">Channel Delete</a> Gateway event.</p>
-<div class="admonition warn">
-<p class="admonition-title">Warn</p>
-<p>Deleting a guild channel cannot be undone. Use this with caution, as it is impossible to undo this action when performed on a guild channel. In contrast, when used with a private message, it is possible to undo the action by opening a private message with the recipient again.</p>
-</div>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>For Community guilds, the Rules or Guidelines channel and the Community Updates channel cannot be deleted.</p>
-</div>
+<p><span class="http-verb">DELETE</span><span class="http-path">/teams/{team.id}/groups/{group.id}/channels/{<a href="/resources/channel#channel-object">channel.id</a>}</span></p>
+<p>Delete a channel. Deleting a category does not delete its child channels; they will have their <code>categoryId</code> nullified.</p>
 <h2 id="get-channel-messages">Get Channel Messages<a class="headerlink" href="#get-channel-messages" title="Permanent link">🔗</a></h2>
 <p><span class="http-verb">GET</span><span class="http-path">/channels/{<a href="/resources/channel#channel-object">channel.id</a>}/messages</span></p>
 <p>Returns the messages for a channel. Does not require authentication. Returns an array of <a href="/resources/channel#message-object">message</a> objects and a boolean <code>hasPastMessages</code> detailing if there are messages preceeding this array on success.</p>
@@ -2108,13 +2023,8 @@
 <span class="p">}</span>
 </code></pre></div>
 <h2 id="edit-message">Edit Message<a class="headerlink" href="#edit-message" title="Permanent link">🔗</a></h2>
-<p><span class="http-verb">PATCH</span><span class="http-path">/channels/{<a href="/resources/channel#channel-object">channel.id</a>}/messages/{<a href="/resources/channel#message-object">message.id</a>}</span></p>
-<p>Edit a previously sent message. The fields <code>content</code>, <code>embed</code>, <code>allowed_mentions</code> and <code>flags</code> can be edited by the original message author. Other users can only edit <code>flags</code> and only if they have the <code>MANAGE_MESSAGES</code> permission in the corresponding channel. When specifying flags, ensure to include all previously set flags/bits in addition to ones that you are modifying. Only <code>flags</code> documented in the table below may be modified by users (unsupported flag changes are currently ignored without error).</p>
-<p>Returns a <a href="/resources/channel#message-object">message</a> object. Fires a <a href="/topics/gateway#ChatMessageUpdated">Message Update</a> Gateway event.</p>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>All parameters to this endpoint are optional and nullable.</p>
-</div>
+<p><span class="http-verb">PUt</span><span class="http-path">/channels/{<a href="/resources/channel#channel-object">channel.id</a>}/messages/{<a href="/resources/channel#message-object">message.id</a>}</span></p>
+<p>Edit a previously sent message.</p>
 <h6>JSON Params</h6>
 <table>
 <thead>
