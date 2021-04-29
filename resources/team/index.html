@@ -375,6 +375,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#invite-object" class="md-nav__link">
+    Invite Object
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#check-team-name-availability" class="md-nav__link">
     Check Team Name Availability
   </a>
@@ -487,6 +494,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#join-team" class="md-nav__link">
+    Join Team
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#get-team-invites" class="md-nav__link">
     Get Team Invites
   </a>
@@ -496,6 +510,20 @@
         <li class="md-nav__item">
   <a href="#create-team-invite" class="md-nav__link">
     Create Team Invite
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get-invite" class="md-nav__link">
+    Get Invite
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-invite" class="md-nav__link">
+    Use Invite
   </a>
   
 </li>
@@ -686,7 +714,7 @@
 </tbody>
 </table>
 <h6>Example Team</h6>
-<p>Refer to <a href="#get-team">Get Team's example response</a></p>
+<p>Refer to <a href="#get-team">Get Team</a>'s example response</p>
 <h3 id="team-member-object">Team Member Object<a class="headerlink" href="#team-member-object" title="Permanent link">🔗</a></h3>
 <h6>Team Member Structure</h6>
 <table>
@@ -785,7 +813,7 @@
 </tr>
 </tbody>
 </table>
-<h6>Example Guild Member</h6>
+<h6>Example Team Member</h6>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
   <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;EdVMVKR4&quot;</span><span class="p">,</span>
   <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;shay&quot;</span><span class="p">,</span>
@@ -872,6 +900,65 @@
   <span class="nt">&quot;userId&quot;</span><span class="p">:</span> <span class="s2">&quot;2d2Wg8Pm&quot;</span><span class="p">,</span>
   <span class="nt">&quot;bannedBy&quot;</span><span class="p">:</span> <span class="s2">&quot;EdVMVKR4&quot;</span><span class="p">,</span>
   <span class="nt">&quot;createdAt&quot;</span><span class="p">:</span> <span class="s2">&quot;2021-03-13T18:15:53.622Z&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="invite-object">Invite Object<a class="headerlink" href="#invite-object" title="Permanent link">🔗</a></h3>
+<h6>Invite Structure</h6>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td><a href="/reference#generic-object-ids">generic id</a></td>
+<td>the invite's id, referred to as an 'invite code' in the client</td>
+</tr>
+<tr>
+<td>createdAt</td>
+<td>ISO8601 timestamp</td>
+<td>when the invite was created</td>
+</tr>
+<tr>
+<td>teamId</td>
+<td><a href="#team-object">team id</a></td>
+<td>the team's id that the invite is for</td>
+</tr>
+<tr>
+<td>invitedBy</td>
+<td><a href="/resources/user#user-object">user id</a></td>
+<td>the user's id who created the invite</td>
+</tr>
+<tr>
+<td>userBy</td>
+<td>?<a href="/resources/user#user-object">user id</a></td>
+<td>a user's id who used the invite?</td>
+</tr>
+<tr>
+<td>gameId</td>
+<td>?integer</td>
+<td>the game's id that the invite is for</td>
+</tr>
+<tr>
+<td>useCount</td>
+<td>integer</td>
+<td>how many times the invite has been used</td>
+</tr>
+</tbody>
+</table>
+<h6>Example Invite</h6>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+  <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;XENGAmn2&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;createdAt&quot;</span><span class="p">:</span> <span class="s2">&quot;2021-02-26T22:43:52.380Z&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;teamId&quot;</span><span class="p">:</span> <span class="s2">&quot;4R5q39VR&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;invitedBy&quot;</span><span class="p">:</span> <span class="s2">&quot;EdVMVKR4&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;usedBy&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="nt">&quot;gameId&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="nt">&quot;useCount&quot;</span><span class="p">:</span> <span class="mi">0</span>
 <span class="p">}</span>
 </code></pre></div>
 <h2 id="check-team-name-availability">Check Team Name Availability<a class="headerlink" href="#check-team-name-availability" title="Permanent link">🔗</a></h2>
@@ -1580,9 +1667,12 @@
 </tr>
 </tbody>
 </table>
+<h2 id="join-team">Join Team<a class="headerlink" href="#join-team" title="Permanent link">🔗</a></h2>
+<p><span class="http-verb">PUT</span><span class="http-path">/teams/{<a href="#team-object">team.id</a>}/members/{<a href="/resources/user#user-object">user.id</a>}/join</span></p>
+<p>Join a team that has open entry enabled. <code>user.id</code> should be the client user's own id.</p>
 <h2 id="get-team-invites">Get Team Invites<a class="headerlink" href="#get-team-invites" title="Permanent link">🔗</a></h2>
 <p><span class="http-verb">GET</span><span class="http-path">/teams/{<a href="#team-object">team.id</a>}/hash_invites</span></p>
-<p>Returns a list of invite objects inside of an <code>invites</code> key on success.</p>
+<p>Returns an array of <a href="#invite-object">invite object</a>s under an <code>invites</code> key on success.</p>
 <h6>Example Response</h6>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
   <span class="nt">&quot;invites&quot;</span><span class="p">:</span> <span class="p">[</span>
@@ -1632,15 +1722,89 @@
 <tr>
 <td>gameId</td>
 <td>?integer</td>
-<td>the game's id to make this invite for (??? what)</td>
+<td>the game's id to make this invite for</td>
 </tr>
 <tr>
 <td>teamId</td>
 <td><a href="#team-object">team id</a></td>
-<td>the team's id to make this invite for (why)</td>
+<td>the team's id to make this invite for</td>
 </tr>
 </tbody>
 </table>
+<h2 id="get-invite">Get Invite<a class="headerlink" href="#get-invite" title="Permanent link">🔗</a></h2>
+<p><span class="http-verb">GET</span><span class="http-path">/invites/{<a href="#invite-object">invite.id</a>}</span></p>
+<p>Get an invite by its id (invite code). Returns an object with a <a href="#team-object"><code>team</code></a> (the team the invite is for) and a <a href="/resources/user#user-object"><code>user</code></a> (the user who created the invite) on success.</p>
+<h6>Query Params</h6>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>loadAvatars</td>
+<td>boolean</td>
+<td>whether to include <code>invite.team.members</code>. it is <code>false</code> if <code>true</code> is not passed</td>
+<td>false</td>
+<td>true</td>
+</tr>
+</tbody>
+</table>
+<h2 id="use-invite">Use Invite<a class="headerlink" href="#use-invite" title="Permanent link">🔗</a></h2>
+<p><span class="http-verb">PUT</span><span class="http-path">/invites/{<a href="#invite-object">invite.id</a>}</span></p>
+<p>Join a team via an invite. Returns a special object on success, similar to a regular <a href="#invite-object">invite object</a> but with extra data and an unrecognized <code>id</code> value.</p>
+<h6>Query Params</h6>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>teamId</td>
+<td><a href="#team-object">team id</a></td>
+<td>the invite team's id</td>
+<td>false</td>
+<td><a href="#invite-object">invite.teamId</a></td>
+</tr>
+<tr>
+<td>includeLandingChannel</td>
+<td>boolean</td>
+<td>whether to include <code>invite.landingChannel</code></td>
+<td>false</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+<h6>Response Example</h6>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+  <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">2830449</span><span class="p">,</span>
+  <span class="nt">&quot;createdAt&quot;</span><span class="p">:</span> <span class="s2">&quot;2021-04-21T18:51:51.558Z&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;teamId&quot;</span><span class="p">:</span> <span class="s2">&quot;4R5q39VR&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;invitedBy&quot;</span><span class="p">:</span> <span class="s2">&quot;EdVMVKR4&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;usedBy&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="nt">&quot;additionalInfo&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;source&quot;</span><span class="p">:</span> <span class="s2">&quot;clientRequest&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;gameId&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+  <span class="nt">&quot;useCount&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="nt">&quot;landingChannel&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;groupId&quot;</span><span class="p">:</span> <span class="s2">&quot;l3GmAe9d&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;ae12b25a-eb79-48e5-a5a4-1ce83c62f86d&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;contentType&quot;</span><span class="p">:</span> <span class="s2">&quot;chat&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
                 
               
               

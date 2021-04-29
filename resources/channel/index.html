@@ -1886,10 +1886,6 @@
 <p>The actual uploading of attachments is a separate endpoint. See <a href="/reference#upload-a-file">how to upload files</a>. Use a dynamicMediaTypeId of <code>ContentMedia</code>.</p>
 <p>The concept of "replies" do not exist, but you may <a href="#create-thread">begin a new thread</a> with a <code>message</code> key to send your message as a new thread.</p>
 <h6>JSON Params</h6>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>Note that when sending <code>application/json</code> you must send at <strong>least one of</strong> <code>content</code> or <code>embed</code>.</p>
-</div>
 <table>
 <thead>
 <tr>
@@ -1906,7 +1902,7 @@
 </tr>
 <tr>
 <td>content</td>
-<td>[message content]</td>
+<td>message content (see below)</td>
 <td>the message contents (up to 4,000 characters of text)</td>
 </tr>
 </tbody>
@@ -2023,9 +2019,17 @@
 <span class="p">}</span>
 </code></pre></div>
 <h2 id="edit-message">Edit Message<a class="headerlink" href="#edit-message" title="Permanent link">🔗</a></h2>
-<p><span class="http-verb">PUt</span><span class="http-path">/channels/{<a href="/resources/channel#channel-object">channel.id</a>}/messages/{<a href="/resources/channel#message-object">message.id</a>}</span></p>
+<p><span class="http-verb">PUT</span><span class="http-path">/channels/{<a href="/resources/channel#channel-object">channel.id</a>}/messages/{<a href="/resources/channel#message-object">message.id</a>}</span></p>
 <p>Edit a previously sent message.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Due to how the content structure works, sending new content will entirely replace the old content. This means that in order to keep old nodes, you will have to send them with the new request.</p>
+</div>
 <h6>JSON Params</h6>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This endpoint takes the same structure of <code>content</code> as <a href="#send-message">Send Message</a>, so for brevity, its elaboration is not included here.</p>
+</div>
 <table>
 <thead>
 <tr>
@@ -2037,13 +2041,8 @@
 <tbody>
 <tr>
 <td>content</td>
-<td>string</td>
-<td>the new message contents (up to 2000 characters)</td>
-</tr>
-<tr>
-<td>embed</td>
-<td><a href="/resources/channel#embed-object">embed</a> object</td>
-<td>embedded <code>rich</code> content</td>
+<td>message content</td>
+<td>the new message contents (up to 4,000 characters of text)</td>
 </tr>
 </tbody>
 </table>

@@ -402,6 +402,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#flair-object" class="md-nav__link">
+    Flair Object
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#me-object" class="md-nav__link">
     Me Object
   </a>
@@ -732,7 +739,12 @@
 <tr>
 <td>stonks?</td>
 <td>integer</td>
-<td>number of "stonks" this user has gotten from inviting people</td>
+<td>number of "stonks" the user has gotten from inviting people</td>
+</tr>
+<tr>
+<td>flairInfos?</td>
+<td>array of <a href="#flair-object">flair objects</a></td>
+<td>the flairs the user has on their profile</td>
 </tr>
 </tbody>
 </table>
@@ -1103,6 +1115,33 @@
 <p><img alt="example user status in the client" src="/images/example_status.png" /></p>
 <h3 id="user-status-content-object">User Status Content Object<a class="headerlink" href="#user-status-content-object" title="Permanent link">🔗</a></h3>
 <p>Status content is an example of "stacked" content, much like message data. It's pretty difficult to portray its structure in a table, so I've simply not done that. The useful part of the object is the <code>document.nodes[0].nodes</code> list. Refer to <a href="#example-user-status">this example</a> and parse it as you will.</p>
+<h3 id="flair-object">Flair Object<a class="headerlink" href="#flair-object" title="Permanent link">🔗</a></h3>
+<p>Represents a profile flair. Does not include stonks, those can be found at <a href="#user-object"><code>user.stonks</code></a>.</p>
+<h6>Flair Structure</h6>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+<th>Known Values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>flair</td>
+<td>string</td>
+<td>name of the flair</td>
+<td><code>'gil_gang'</code></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>integer</td>
+<td>quantity of this flair that the user has, probably intended for stonks</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h3 id="me-object">Me Object<a class="headerlink" href="#me-object" title="Permanent link">🔗</a></h3>
 <h6>Me Structure</h6>
 <table>
@@ -1299,7 +1338,7 @@
 <tr>
 <td>isLogin</td>
 <td>boolean</td>
-<td>whether or not you are logging in (i guess)</td>
+<td>whether or not you are logging in (probably)</td>
 <td>false</td>
 <td>false</td>
 </tr>
