@@ -448,8 +448,29 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#delete-thread" class="md-nav__link">
-    Delete Thread
+  <a href="#leave-thread" class="md-nav__link">
+    Leave Thread
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#archive-team-thread" class="md-nav__link">
+    Archive Team Thread
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#restore-team-thread" class="md-nav__link">
+    Restore Team Thread
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#delete-team-thread" class="md-nav__link">
+    Delete Team Thread
   </a>
   
 </li>
@@ -2135,11 +2156,36 @@
 </tr>
 </tbody>
 </table>
-<h2 id="delete-thread">Delete Thread<a class="headerlink" href="#delete-thread" title="Permanent link">🔗</a></h2>
+<h2 id="leave-thread">Leave Thread<a class="headerlink" href="#leave-thread" title="Permanent link">🔗</a></h2>
+<p><span class="http-verb">DELETE</span><span class="http-path">/users/{<a href="/resources/user#user-object">user.id</a>}/channels/{<a href="/resources/channel#channel-object">thread.id</a>}</span></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><code>user.id</code> should be the current user's ID. Attempting to use this endpoint to remove someone else from a thread results in a 403 Forbidden response.</p>
+</div>
+<p>Leave a thread. Guilded will also stop sending you notifications from the thread.</p>
+<h2 id="archive-team-thread">Archive Team Thread<a class="headerlink" href="#archive-team-thread" title="Permanent link">🔗</a></h2>
+<p><span class="http-verb">PUT</span><span class="http-path">/teams/{<a href="/resources/team#team-object">team.id</a>}/groups/{<a href="/resources/group#group-object">group.id</a>}/channels/{<a href="/resources/channel#channel-object">thread.id</a>}/archive</span></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><code>group.id</code> can be <code>undefined</code> if this is the base group.</p>
+</div>
+<p>Archive a thread. The thread can be restored at any time with <a href="#restore-thread">Restore Thread</a>.</p>
+<h2 id="restore-team-thread">Restore Team Thread<a class="headerlink" href="#restore-team-thread" title="Permanent link">🔗</a></h2>
+<p><span class="http-verb">PUT</span><span class="http-path">/teams/{<a href="/resources/team#team-object">team.id</a>}/groups/{<a href="/resources/group#group-object">group.id</a>}/channels/{<a href="/resources/channel#channel-object">thread.id</a>}/restore</span></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><code>group.id</code> can be <code>undefined</code> if this is the base group.</p>
+</div>
+<p>Restore a thread after it has been archived. It can be archived again with <a href="#archive-thread">Archive Thread</a></p>
+<h2 id="delete-team-thread">Delete Team Thread<a class="headerlink" href="#delete-team-thread" title="Permanent link">🔗</a></h2>
 <p><span class="http-verb">DELETE</span><span class="http-path">/teams/{<a href="/resources/team#team-object">team.id</a>}/groups/{<a href="/resources/group#group-object">group.id</a>}/channels/{<a href="/resources/channel#channel-object">thread.id</a>}</span></p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p><code>group.id</code> can be <code>undefined</code> if this is the base group.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>This endpoint can also be used to delete normal channels.</p>
 </div>
 <p>Delete a thread in a channel.</p>
 <h2 id="post-team-announcement">Post Team Announcement<a class="headerlink" href="#post-team-announcement" title="Permanent link">🔗</a></h2>
